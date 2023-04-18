@@ -59,13 +59,7 @@ measurements = [ "DNNAccuracy",  "DNNBasicScore",
 
 df = pd.DataFrame(columns=measurements)
 for neuron_num in neurons:
-    # Number of layers (1, 2, 3, 4, 5)
     for layer_num in layers:
-        # Reason why model_DNN and model_BNN are defined separately (even though they're the same)
-        # is to do with how Python passes values/objects through functions
-        # http://scipy-lectures.org/intro/language/functions.html#passing-by-value
-
-
         model = keras.Sequential()
         model.add(keras.Input(shape=(43)))
 

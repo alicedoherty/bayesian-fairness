@@ -1,4 +1,3 @@
-# For installation of DeepBayes see https://stackoverflow.com/questions/23075397/python-how-to-edit-an-installed-package
 import deepbayes.optimizers as optimizers
 from tensorflow import keras
 import pandas as pd
@@ -87,7 +86,6 @@ def train_BNN_model(x_train, y_train, x_test, y_test, model):
     bayes_model = optimizer.compile(
         model, loss_fn=loss, batch_size=batch_size, epochs=epochs)
 
-    # Why does it need x_test and y_test for training?
     bayes_model.train(x_train, y_train, x_test, y_test)
 
     return bayes_model
@@ -223,8 +221,6 @@ def main():
         for layer_num in layers:
             # Reason why model_DNN and model_BNN are defined separately (even though they're the same)
             # is to do with how Python passes values/objects through functions
-            # http://scipy-lectures.org/intro/language/functions.html#passing-by-value
-
             model_DNN = keras.Sequential()
             model_DNN.add(keras.Input(shape=input_shape))
 
@@ -266,7 +262,6 @@ def main():
             # avrg_diff_DNN = random.random()
             # avrg_diff_BNN = random.random()
 
-            # https://stackoverflow.com/questions/70837397/good-alternative-to-pandas-append-method-now-that-it-is-being-deprecated
             new_row = pd.DataFrame([accuracy_DNN, accuracy_BNN, basic_score_DNN, basic_score_BNN, max_diff_DNN, max_diff_BNN,
                                     min_diff_DNN, min_diff_BNN, avrg_diff_DNN, avrg_diff_BNN], index=measurements, columns=[f"L{layer_num}N{neuron_num}"]).T
             df = pd.concat((df, new_row))

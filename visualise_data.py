@@ -8,8 +8,6 @@ import os
 
 def get_trial_means(df_list):
     #  Read in the all 10 dfs from trials and return the average of each measurement across all trials
-
-    # https://stackoverflow.com/questions/25057835/get-the-mean-across-multiple-pandas-dataframes
     df_means = pd.concat(df_list)
     # sort=False to maintain index/row order
     df_means = df_means.groupby(df_means.index, sort=False).mean()
@@ -38,7 +36,6 @@ def generate_heatmaps(df, epsilon):
 
         # Then, we want to convert the 1D array to a 2D array of shape (6, 5) (i.e. 6 rows (neurons), 5 columns (layers))
         # So it can be converted to a heatmap easily
-        # https://stackoverflow.com/questions/12575421/convert-a-1d-array-to-a-2d-array-in-numpy
         heatmap_data = np.reshape(results, (len(neurons), len(layers)))
         print("Heatmap Formatted Data:", heatmap_data)
 
@@ -67,7 +64,6 @@ def generate_accuracy_fairness_plots(df, epsilon):
     BNN_labels = ["BNN Basic Score", "BNN Max Difference",
                   "BNN Min Difference", "BNN Mean Difference"]
 
-    # https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html
     for label in DNN_labels:
         tmp = label
         measurement = tmp.replace(" ", "")

@@ -42,8 +42,6 @@ model_VI.summary()
 
 # Initialising some training parameters
 loss = keras.losses.SparseCategoricalCrossentropy()
-# Deepbayes Adam optimizer doesn't seem to work properly
-# opt = optimizers.Adam()
 optimizer = optimizers.VariationalOnlineGuassNewton()
 #optimizer = optimizers.HamiltonianMonteCarlo()
 batch_size = 128
@@ -53,7 +51,6 @@ epochs = 15
 model_VI = optimizer.compile(
     model_VI, loss_fn=loss, batch_size=batch_size, epochs=epochs)
 
-# Why does it need x_test and y_test for training?
 model_VI.train(x_train, np.argmax(y_train,axis=1), x_test,np.argmax(y_test,axis=1))
 
 model_VI.save('VI_for_samples_attack')
@@ -83,7 +80,6 @@ epochs = 75
 model_HMC = optimizer.compile(
     model_HMC, loss_fn=loss, batch_size=batch_size, epochs=epochs)
 
-# Why does it need x_test and y_test for training?
 model_HMC.train(x_train, np.argmax(y_train,axis=1), x_test,np.argmax(y_test,axis=1))
 
 model_HMC.save('HMC_for_samples_attack')
@@ -106,8 +102,6 @@ model_DE.summary()
 
 # Initialising some training parameters
 loss = keras.losses.SparseCategoricalCrossentropy()
-# Deepbayes Adam optimizer doesn't seem to work properly
-# opt = optimizers.Adam()
 optimizer = DeepEnsemble()
 batch_size = 128
 epochs = 15
@@ -116,7 +110,6 @@ epochs = 15
 model_DE = optimizer.compile(
     model_DE, loss_fn=loss, batch_size=batch_size, epochs=epochs,num_models=75)
 
-# Why does it need x_test and y_test for training?
 model_DE.train(x_train, np.argmax(y_train,axis=1), x_test,np.argmax(y_test,axis=1))
 
 model_DE.save('DE_for_samples_attack')

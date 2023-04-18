@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-
 from deepbayes import PosteriorModel
 import pickle
 from run_trial import preprocess_data
